@@ -1,4 +1,4 @@
-Sitecore PowerShell deployment framework
+Sitecore PowerShell Deployment Framework
 ==================
 
 Helper cmdlets which can be used to create simple Sitecore website deployment script in something like 50 lines of code.
