@@ -2,7 +2,6 @@ Sitecore PowerShell deployment framework
 ==================
 
 Helper cmdlets which can be used to create simple Sitecore website deployment script in something like 50 lines of code.
-See the deployment script example below.
 
 **DBUtils.ps1**
 
@@ -50,6 +49,8 @@ Contains single commandlet which will Checkout / Revert / Update folder from spe
 **WebUtils.ps1**
 
 Includes single commandlet for invoking a web page
+
+**Deployment script example**
 
  ```powershell
 Clear-Host
