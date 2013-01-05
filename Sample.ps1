@@ -14,8 +14,8 @@ $targetFolder = "E:\inetpub\wwwroot"
 
 # Additional variables
 $packageFileName = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
-$dataFolder = "$destination\$packageFileName\Data"
-$websiteFolder = "$destination\$packageFileName\Website"
+$dataFolder = "$targetFolder\$packageFileName\Data"
+$websiteFolder = "$targetFolder\$packageFileName\Website"
 $serverName = $env:COMPUTERNAME
 $sqlServerName = "$serverName\SQLEXPRESS"
 
