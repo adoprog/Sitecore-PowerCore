@@ -26,7 +26,7 @@ $server = New-Object ("Microsoft.SqlServer.Management.Smo.Server") $sqlServerNam
 $databases = "core", "master", "web"
 foreach ($db in $databases)
 {
-    Attach-Database $server "$siteName.$db" "$targetFolder\$packageFileName\Databases\Sitecore.$db.mdf" "$destination\$packageFileName\Databases\Sitecore.$db.ldf"
+    Attach-Database $server "$siteName.$db" "$targetFolder\$packageFileName\Databases\Sitecore.$db.mdf" "$targetFolder\$packageFileName\Databases\Sitecore.$db.ldf"
 	Set-ConnectionString "$websiteFolder\App_Config\ConnectionStrings.config" "$db" "Trusted_Connection=Yes;Data Source=$sqlServerName;Database=$siteName.$db"
 }
 
