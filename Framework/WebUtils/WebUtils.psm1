@@ -11,3 +11,5 @@ function Get-WebPage {
 	$request.Timeout = 2400000
 	return $request.GetResponse()		
 }
+
+Export-ModuleMember -function Get-WebPage
