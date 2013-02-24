@@ -1,12 +1,14 @@
 Clear-Host
+
 # Framework initialization
 $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
 $env:PSModulePath = $env:PSModulePath + ";$scriptRoot\Framework"
-.$scriptRoot\Framework\FileUtils.ps1
-.$scriptRoot\Framework\DBUtils.ps1
-.$scriptRoot\Framework\ConfigUtils.ps1
-.$scriptRoot\Framework\IISUtils.ps1
+
 Import-Module WebUtils
+Import-Module ConfigUtils
+Import-Module DBUtils
+Import-Module IISUtils
+Import-Module FileUtils
 
 # Main variables
 $siteName = "PowerCoreSample"
