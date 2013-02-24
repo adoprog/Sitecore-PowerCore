@@ -1,9 +1,9 @@
 Sitecore PowerShell Deployment Framework
 ==================
 
-Helper cmdlets which can be used to create simple Sitecore website deployment script in something like 50 lines of code.
+Helper modules which can be used to create simple Sitecore website deployment script in something like 50 lines of code.
 
-**DBUtils.ps1**
+**DBUtils.psm1**
 
 Basic DB operations - backup / restore / execute, etc.
 
@@ -13,7 +13,7 @@ Basic DB operations - backup / restore / execute, etc.
 * Attach-Database
 * Execute-File
 
-**FileUtils.ps1**
+**FileUtils.psm1**
 
 Used to download / extract / package files, etc.
 
@@ -23,7 +23,7 @@ Used to download / extract / package files, etc.
 * Unzip-Archive
 * Add-HostFileContent
 
-**ConfigUtils.ps1**
+**ConfigUtils.psm1**
 
 All about editing .config files - web.config, include files, ConnectionStrings.config
 
@@ -35,18 +35,18 @@ All about editing .config files - web.config, include files, ConnectionStrings.c
 
 and many other cmdlets
 
-**IISUtils.ps1**
+**IISUtils.psm1**
 
 Used to create Sites / AppPools in IIS
 
 * Create-AppPool
 * Create-Site
 
-**SvnUtils.ps1**
+**SvnUtils.psm1**
 
 Contains single commandlet which will Checkout / Revert / Update folder from specified SVN repository. It can be split into a few different ones, I plan to do it in future.
 
-**WebUtils.ps1**
+**WebUtils.psm1**
 
 Includes single commandlet for invoking a web page
 
@@ -54,12 +54,16 @@ Includes single commandlet for invoking a web page
 
  ```powershell
 Clear-Host
+
 # Framework initialization
 $scriptRoot = Split-Path (Resolve-Path $myInvocation.MyCommand.Path)
-.$scriptRoot\Framework\FileUtils.ps1
-.$scriptRoot\Framework\DBUtils.ps1
-.$scriptRoot\Framework\ConfigUtils.ps1
-.$scriptRoot\Framework\IISUtils.ps1
+$env:PSModulePath = $env:PSModulePath + ";$scriptRoot\Framework"
+
+Import-Module WebUtils
+Import-Module ConfigUtils
+Import-Module DBUtils
+Import-Module IISUtils
+Import-Module FileUtils
 
 # Main variables
 $siteName = "PowerCoreSample"
