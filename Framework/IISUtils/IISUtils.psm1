@@ -48,7 +48,7 @@ Function Create-AppPool ($siteName, $runtime, $user, $password)
 	.DESCRIPTION
 		Creates website in IIS
 #>
-Function Create-Site ($siteName, $websiteUrl, $webroot)
+Function Create-Site ($siteName, $websiteUrl, $webroot, $port = 80)
 {
     Write-Output "Website folder: $webroot" 
     $serverManager = New-Object Microsoft.Web.Administration.ServerManager;
@@ -60,7 +60,7 @@ Function Create-Site ($siteName, $websiteUrl, $webroot)
         $serverManager.Sites.Remove($serverManager.Sites[$siteName])
     }
     
-    $webSite = $serverManager.Sites.Add($siteName, "http", ":80:$websiteUrl", $webroot + "\website");
+    $webSite = $serverManager.Sites.Add($siteName, "http", ":" + $port + ":$websiteUrl", $webroot + "\website");
     $webSite.Applications[0].ApplicationPoolName = $siteName;
     Write-Output "Website Created"
     Start-sleep -milliseconds 1000
