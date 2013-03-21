@@ -23,8 +23,8 @@ Function Create-Database ($server, $databaseName)
     Write-Host " " 
     
     "Removing existing database - " + $databaseName
-    IF ($smo.databases[$databaseName] -ne $NULL) {
-        $smo.databases[$databaseName].drop()
+    IF ($server.databases[$databaseName] -ne $NULL) {
+        $server.databases[$databaseName].drop()
     }
     
     # Instantiate the database object and add the filegroups
@@ -78,7 +78,7 @@ Function Restore-Database ($server, $database, $backupFile)
 	$Restore.Norecovery = $false
     $Restore.Devices.Add($backupDevice)
 
-    $db = $smo.databases[$database]
+    $db = $server.databases[$database]
     
     Write-Host $db.FileGroups["PRIMARY"].Files[0].FileName
     Write-Host $db.LogFiles[0].FileName
