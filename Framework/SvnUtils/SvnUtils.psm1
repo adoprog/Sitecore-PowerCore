@@ -11,7 +11,11 @@ function Connect-FolderToSVN([string]$svnUrl, [string]$svnLocalPath, [string]$sv
 
     # Creates a SharpSVN SvnClient object  
     $svnClient = new-object SharpSvn.SvnClient  
-      
+
+    # Set the username / password
+    $credentials = new-object System.Net.NetworkCredential($svnUsername, $svnPassword)   
+    $svnClient.Authentication.DefaultCredentials = $credentials; 
+            
     # Creates a SharpSVN SvnUriTarget object  
     $repoUri = new-object SharpSvn.SvnUriTarget($svnUrl)  
       
