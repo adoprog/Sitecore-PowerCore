@@ -23,8 +23,8 @@ Function Create-Database ($server, $databaseName)
     Write-Host " " 
     
     "Removing existing database - " + $databaseName
-    IF ($server.databases[$databaseName] -ne $NULL) {
-        $server.databases[$databaseName].drop()
+    IF ($smo.databases[$databaseName] -ne $NULL) {
+        $smo.databases[$databaseName].drop()
     }
     
     # Instantiate the database object and add the filegroups
@@ -90,7 +90,7 @@ Function Restore-Database ($server, $database, $backupFile)
 	$Restore.Norecovery = $false
     $Restore.Devices.Add($backupDevice)
 
-    $db = $server.databases[$database]
+    $db = $smo.databases[$database]
     
     Write-Host $db.FileGroups["PRIMARY"].Files[0].FileName
     Write-Host $db.LogFiles[0].FileName
@@ -174,6 +174,7 @@ Function Execute-File ($server, $database, $file)
 }
   
 Export-ModuleMember -function Create-Database
+Export-ModuleMember -function Delete-Database
 Export-ModuleMember -function Restore-Database
 Export-ModuleMember -function Backup-Database
 Export-ModuleMember -function Attach-Database
