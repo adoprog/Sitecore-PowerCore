@@ -64,6 +64,18 @@ Function Create-Database ($server, $databaseName)
 
 <#
 	.DESCRIPTION
+		Deletes the database on the specified SQL server. 
+#>
+Function Delete-Database ($server, $databaseName)
+{
+    "Removing the database - " + $databaseName
+    IF ($smo.databases[$databaseName] -ne $NULL) {
+        $smo.databases[$databaseName].drop()
+    }
+}
+
+<#
+	.DESCRIPTION
 		Restores database from provided backup file
 #>
 Function Restore-Database ($server, $database, $backupFile)
