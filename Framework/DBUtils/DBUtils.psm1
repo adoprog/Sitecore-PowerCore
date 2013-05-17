@@ -23,8 +23,8 @@ Function Create-Database ($server, $databaseName)
     Write-Host " " 
     
     "Removing existing database - " + $databaseName
-    IF ($smo.databases[$databaseName] -ne $NULL) {
-        $smo.databases[$databaseName].drop()
+    IF ($server.databases[$databaseName] -ne $NULL) {
+        $server.databases[$databaseName].drop()
     }
     
     # Instantiate the database object and add the filegroups
@@ -69,8 +69,8 @@ Function Create-Database ($server, $databaseName)
 Function Delete-Database ($server, $databaseName)
 {
     "Removing the database - " + $databaseName
-    IF ($smo.databases[$databaseName] -ne $NULL) {
-        $smo.databases[$databaseName].drop()
+    IF ($server.databases[$databaseName] -ne $NULL) {
+        $server.databases[$databaseName].drop()
     }
 }
 
