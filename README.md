@@ -93,7 +93,7 @@ Set-ConfigAttribute "$websiteFolder\web.config" "sitecore/sc.variable[@name='dat
 
 Copy-Item $licensePath $dataFolder
 Create-AppPool $siteName "v4.0"
-Create-Site $siteName "$siteName.local"  "$destination\$packageFileName"
+Create-Site $siteName "$siteName.local"  $targetFolder\$packageFileName
 Add-HostFileContent "127.0.0.1" "$siteName.local"
 
  ```
