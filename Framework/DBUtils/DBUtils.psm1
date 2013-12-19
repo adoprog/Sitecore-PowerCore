@@ -90,7 +90,7 @@ Function Restore-Database ($server, $database, $backupFile)
 	$Restore.Norecovery = $false
     $Restore.Devices.Add($backupDevice)
 
-    $db = $smo.databases[$database]
+    $db = $server.databases[$database]
     
     Write-Host $db.FileGroups["PRIMARY"].Files[0].FileName
     Write-Host $db.LogFiles[0].FileName
