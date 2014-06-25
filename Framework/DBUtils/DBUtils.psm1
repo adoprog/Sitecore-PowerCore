@@ -7,10 +7,18 @@
 	.DESCRIPTION
 		Creates new database on specified SQL server. Existing DB will be overwritten
 #>
-Function Create-Database ($server, $databaseName)
+Function Create-Database ($server, $databaseName, $DatabasePath)
 {
-	$dataFileFolder = $server.Settings.DefaultFile
-	$logFileFolder = $server.Settings.DefaultLog
+    if($DatabasePath) {
+        $dataFileFolder = $DatabasePath
+        $logFileFolder = $DatabasePath
+
+    }
+    else {
+	    $dataFileFolder = $server.Settings.DefaultFile
+	    $logFileFolder = $server.Settings.DefaultLog
+    }
+
 	if ($dataFileFolder -eq $NULL -or $dataFileFolder.Length -eq 0) {
 	    $dataFileFolder = $server.Information.MasterDBPath
 	}
