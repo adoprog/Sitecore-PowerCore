@@ -79,7 +79,7 @@ Function Remove-Database ($server, $databaseName)
     "Removing the database - " + $databaseName
     IF ($server.databases[$databaseName] -ne $NULL) {
         $server.KillAllProcesses($databaseName)
-        $server.databases[$databaseName].drop()
+        $server.KillDatabase($databaseName)
     }
 }
 
