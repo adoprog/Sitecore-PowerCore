@@ -132,18 +132,14 @@ Function Restore-Database ($server, $database, $backupFile)
 	.DESCRIPTION
 		Backups database with the specified name.
 #>
-Function Backup-Database ($d, $server, $dbName)
+Function Backup-Database ($database, $server, $backupFile)
 {
-    Write-Host "Backup database" + $d.Name + "started"
-    Write-Host "Backup file name is:" $dbName
+    Write-Host "Backup database" + $database.Name + "started"
+    Write-Host "Backup file:" $backupFile
     $dbBackup = new-Object ("Microsoft.SqlServer.Management.Smo.Backup")
     $dbRestore = new-object ("Microsoft.SqlServer.Management.Smo.Restore")
 
-    $dbBackup.Database = $d.Name
-
-    $backupFile = $backupFolder + "\" + $dbName + ".bak"
-    Write-Host "Backup file:" $backupFile
-
+    $dbBackup.Database = $database.Name
     $dbBackup.Devices.AddDevice($backupFile, "File")
 
     $dbBackup.Action="Database"
@@ -151,7 +147,7 @@ Function Backup-Database ($d, $server, $dbName)
     $dbBackup.PercentCompleteNotification = 10
     $dbBackup.SqlBackup($server)  
     
-    Write-Host "Backup database" + $d.Name + "finished"
+    Write-Host "Backup database" + $database.Name + "finished"
 }
 
 <#
